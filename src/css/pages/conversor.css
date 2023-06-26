@@ -1,4 +1,5 @@
 body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(202, 236, 225);
     min-height: 100vh;
     display: flex;
@@ -6,9 +7,54 @@ body {
     align-items: center;
 }
 
+h1{
+    padding: 15px;
+}
+
 .formulario {
     font-size: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border: 2px solid black;
+    padding: 70px 50px;
+    border-radius: 20px;
+    box-shadow: 10px 10px;
+
+}
+
+.categoria,
+.unidadeOrigem,
+.unidadeDestino,
+.valorEntrada,
+.valorSaida {
+display: flex;
+flex-direction: column;
+}
+
+.valorSaida span{
+width: 100%;
+height: 16px;
+background-color: #fff;
+border: 1px solid rgba(0, 0, 0, .5);
+}
+
+select,
+input,
+.valorSaida span{
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+input{
+    border: 1px solid rgba(0, 0, 0, .5);
+}
+
+button{
+    background-color:rgb(163, 245, 218);
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
 }
