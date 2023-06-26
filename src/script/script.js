@@ -1,3 +1,5 @@
+// criação de var's: declaração de variaveis utilizadas por todo sistema.
+
 var categoria = document.getElementById('categoria')
 
 var unidadeOrigem = document.getElementById('unidadeOrigem')
@@ -10,9 +12,8 @@ var recebeValor = document.getElementById('recebeValor')
 
 var valorConvertido = document.getElementById('valorConvertido')
 
-categoria.addEventListener('change', selecionaCategoria)
-
-function selecionaCategoria() {
+// evento de escuta do elemento categoria: toda vez que uma opção for selecionada (ocorrer uma mudança) os campos de unidades de origem e destino mudaram de acordo com a mesma.
+categoria.addEventListener('change', function () {
     limpaCampos()
     if (categoria.value == 'comprimento') {
         unidadeOrigem.innerHTML = `
@@ -103,8 +104,9 @@ function selecionaCategoria() {
             }
         })
     }
-}
+})
 
+// cálculos de conversão: armazena os calculos de todas as possibilidades de combinações de conversões requeridas.
 const conversao = {
     comprimento: {
         metros: {
@@ -187,33 +189,33 @@ const conversao = {
 
 }
 
+// evento de escuta do botão de conversão: verifica se os campos estão preenchidos, e então navega pelo objeto baseado na categoria e nas unidades para encontrar a função do cálculo respectivo.
 botao.addEventListener('click', function (event) {
     event.preventDefault()
     verificaCampos()
     var categoriaSelecionada = categoria.value
     if (categoriaSelecionada && recebeValor.value != "") {
         var valor = recebeValor.value
-        valorConvertido.innerHTML = `${conversao[categoriaSelecionada][unidadeOrigem.value][unidadeDestino.value](+valor)}`
+        valorConvertido.value = `${conversao[categoriaSelecionada][unidadeOrigem.value][unidadeDestino.value](+valor)}`
 
     }
 })
 
+// função limpa campos: todas as vezes que a categoria ou as unidades forem alteradas, o valor convertido será limpo.
 function limpaCampos() {
     categoria.addEventListener('change', function () {
         unidadeDestino.innerHTML = ""
-        recebeValor.value = ""
-        valorConvertido.innerHTML = ""
+        valorConvertido.value = ""
     })
     unidadeOrigem.addEventListener('change', function () {
-        recebeValor.value = ""
-        valorConvertido.innerHTML = ""
+        valorConvertido.value = ""
     })
     unidadeDestino.addEventListener('change', function () {
-        recebeValor.value = ""
-        valorConvertido.innerHTML = ""
+        valorConvertido.value = ""
     })
 }
 
+// função de verificação: toda vez que o botão for clicado, irá verificar se todos os campos estão selecionados e se o valor a ser convertido existe, caso não mensagens de aleta correspondentes irão aparecer
 function verificaCampos() {
     if (unidadeOrigem.value == "" || unidadeDestino.value == "") {
         alert("Por favor, selecione a unidade")

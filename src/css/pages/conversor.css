@@ -1,3 +1,4 @@
+/* estilização do body: fonte, cor de fundo e centralização */
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(202, 236, 225);
@@ -7,10 +8,12 @@ body {
     align-items: center;
 }
 
-h1{
+/* padding do título */
+h1 {
     padding: 15px;
 }
 
+/* estilização do formulário: fonte, direção colunas dos elementos, bordas etc. */
 .formulario {
     font-size: 20px;
     display: flex;
@@ -23,35 +26,28 @@ h1{
 
 }
 
+/* definição de colunas para as referidas classes */
 .categoria,
 .unidadeOrigem,
 .unidadeDestino,
 .valorEntrada,
 .valorSaida {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-.valorSaida span{
-width: 100%;
-height: 16px;
-background-color: #fff;
-border: 1px solid rgba(0, 0, 0, .5);
-}
-
+/* definição de margem, padding e bordas para os selects e inputs */
 select,
-input,
-.valorSaida span{
+input {
     margin-bottom: 8px;
     border-radius: 4px;
-}
-
-input{
+    padding: 5px;
     border: 1px solid rgba(0, 0, 0, .5);
 }
 
-button{
-    background-color:rgb(163, 245, 218);
+/* estilização do botão: cor, fonte, peso da fonte etc. */
+button {
+    background-color: rgb(163, 245, 218);
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;

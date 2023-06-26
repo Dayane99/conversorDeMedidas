@@ -12,8 +12,11 @@
 <body>
     <main>
         <section class="conteiner">
+            <!-- título -->
             <h1>Conversor de Medidas</h1>
+            <!-- conversor de medidas -->
             <form class="formulario" action="">
+                <!-- tipos de conversão disponiveis-->
                 <div class="categoria">
                     <label for="categoria">Categorias</label>
                     <select name="categoria" id="categoria">
@@ -24,6 +27,7 @@
                     </select>
                 </div>
 
+                <!-- unidade que deseja converter, baseada na categoria selecionada anteriormente -->
                 <div class="unidadeOrigem">
                     <label for="unidadeOrigem">Unidade de origem</label>
                     <select name="unidadeOrigem" id="unidadeOrigem">
@@ -31,6 +35,7 @@
                     </select>
                 </div>
 
+                <!-- unidade que deseja obter, baseada na categoria selecionada anteriormente, desconsiderando a unidade de origem -->
                 <div class="unidadeDestino">
                     <label for="unidadeDestino">Unidade de destino</label>
                     <select name="unidadeDestino" id="unidadeDestino">
@@ -38,18 +43,19 @@
                     </select>
                 </div>
 
-                <div class="valores">
-                    <div class="valorEntrada">
-                        <label for="">Valor</label>
-                        <input type="text" id="recebeValor">
-                    </div>
-
-                    <div class="valorSaida">
-                        <label for="">Valor convertido</label>
-                        <span id="valorConvertido"></span>
-                    </div>
+                <!-- campo de entrada do valor a ser convertido -->
+                <div class="valorEntrada">
+                    <label for="">Valor</label>
+                    <input type="text" id="recebeValor">
                 </div>
 
+                <!-- local de saida de valor já convertido -->
+                <div class="valorSaida">
+                    <label for="">Valor convertido</label>
+                    <input type="text" id="valorConvertido"></input>
+                </div>
+
+                <!-- botão de conversão -->
                 <button id="botao">Converter</button>
             </form>
         </section>
