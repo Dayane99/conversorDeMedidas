@@ -13,6 +13,7 @@ var valorConvertido = document.getElementById('valorConvertido')
 categoria.addEventListener('change', selecionaCategoria)
 
 function selecionaCategoria() {
+    limpaCampos()
     if (categoria.value == 'comprimento') {
         unidadeOrigem.innerHTML = `
         <option value="">Selecione</option>
@@ -111,7 +112,7 @@ const conversao = {
                 return metros * 100
             },
             polegadas: function (metros) {
-                return metros * 39.37;
+                return (metros * 39.37).toFixed(2)
             }
         },
         centimetros: {
@@ -119,8 +120,8 @@ const conversao = {
                 return centimetros / 100
             },
             polegadas: function (centimetros) {
-                return centimetros / 2.54
-            },
+                return (centimetros / 2.54).toFixed(6)
+            }
         },
         polegadas: {
             metros: function (polegadas) {
@@ -145,12 +146,12 @@ const conversao = {
                 return gramas / 1000
             },
             libra: function (gramas) {
-                return gramas / 456.6
+                return (gramas / 456.6).toFixed(6)
             }
         },
         libra: {
             quilograma: function (libra) {
-                return libra / 2.205
+                return (libra / 2.205).toFixed(6)
             },
             gramas: function (libra) {
                 return libra * 456.6
@@ -168,10 +169,10 @@ const conversao = {
         },
         fahrenheit: {
             celsius: function (fahrenheit) {
-                return (fahrenheit - 32) * 5 / 9
+                return ((fahrenheit - 32) * 5 / 9).toFixed(2)
             },
             kelvin: function (fahrenheit) {
-                return (fahrenheit - 32) * 5 / 9 + 273.15
+                return ((fahrenheit - 32) * 5 / 9 + 273.15).toFixed(2)
             }
         },
         kelvin: {
@@ -179,7 +180,7 @@ const conversao = {
                 return kelvin - 273.15
             },
             fahrenheit: function (kelvin) {
-                return (kelvin - 273.15) * 9 / 5 + 32
+                return ((kelvin - 273.15) * 9 / 5 + 32).toFixed(2)
             }
         },
     }
@@ -188,12 +189,36 @@ const conversao = {
 
 botao.addEventListener('click', function (event) {
     event.preventDefault()
-    var valor = recebeValor.value
-    // if (valor != ""){
+    verificaCampos()
     var categoriaSelecionada = categoria.value
-    valorConvertido.innerHTML = `${conversao[categoriaSelecionada][unidadeOrigem.value][unidadeDestino.value](+valor)}`
-    // } else{
-    //     alert('Adicione um número')
-    // }
+    if (categoriaSelecionada && recebeValor.value != "") {
+        var valor = recebeValor.value
+        valorConvertido.innerHTML = `${conversao[categoriaSelecionada][unidadeOrigem.value][unidadeDestino.value](+valor)}`
 
+    }
 })
+
+function limpaCampos() {
+    categoria.addEventListener('change', function () {
+        unidadeDestino.innerHTML = ""
+        recebeValor.value = ""
+        valorConvertido.innerHTML = ""
+    })
+    unidadeOrigem.addEventListener('change', function () {
+        recebeValor.value = ""
+        valorConvertido.innerHTML = ""
+    })
+    unidadeDestino.addEventListener('change', function () {
+        recebeValor.value = ""
+        valorConvertido.innerHTML = ""
+    })
+}
+
+function verificaCampos() {
+    if (unidadeOrigem.value == "" || unidadeDestino.value == "") {
+        alert("Por favor, selecione a unidade")
+    }
+    if (unidadeOrigem.value != "" && unidadeDestino.value != "" && recebeValor.value == "") {
+        alert("Por favor, insira o valor")
+    }
+}
